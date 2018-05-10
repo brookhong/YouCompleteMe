@@ -474,7 +474,7 @@ def GetVimCommand( user_command, default = 'edit' ):
 
 
 # Both |line| and |column| need to be 1-based
-def JumpToLocation( filename, line, column ):
+def JumpToLocation( filename, line, column, filecontent ):
   # Add an entry to the jumplist
   vim.command( "normal! m'" )
 
@@ -496,6 +496,9 @@ def JumpToLocation( filename, line, column ):
     try:
       escaped_filename = EscapeFilepathForVimCommand( filename )
       vim.command( 'keepjumps {0} {1}'.format( vim_command, escaped_filename ) )
+      if filecontent:
+        vim.command( 'setlocal buftype=nofile' )
+        vim.current.buffer[ : ] = filecontent
     # When the file we are trying to jump to has a swap file
     # Vim opens swap-exists-choices dialog and throws vim.error with E325 error,
     # or KeyboardInterrupt after user selects one of the options.

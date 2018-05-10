@@ -93,7 +93,8 @@ class CommandRequest( BaseRequest ):
     else:
       vimsupport.JumpToLocation( self._response[ 'filepath' ],
                                  self._response[ 'line_num' ],
-                                 self._response[ 'column_num' ] )
+                                 self._response[ 'column_num' ],
+                                 self._response[ 'filecontent'])
 
 
   def _HandleFixitResponse( self ):

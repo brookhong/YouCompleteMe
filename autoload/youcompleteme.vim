@@ -137,6 +137,7 @@ function! youcompleteme#Enable()
     autocmd VimLeave * call s:OnVimLeave()
     autocmd CompleteDone * call s:OnCompleteDone()
     autocmd BufEnter,WinEnter * call s:UpdateMatches()
+    " autocmd BufReadCmd jdt://contents/**/*.class call s:ReadClassFileFromJDT()
   augroup END
 
   " The FileType event is not triggered for the first loaded file. We wait until
@@ -816,6 +817,11 @@ function! s:Complete()
     " until he explicitly chooses to replace it with a completion.
     call s:SendKeys( "\<C-X>\<C-U>\<C-P>" )
   endif
+endfunction
+
+
+function s:ReadClassFileFromJDT()
+  echoerr "ReadClassFileFromJDT"
 endfunction
 
 
