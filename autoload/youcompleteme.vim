@@ -137,7 +137,7 @@ function! youcompleteme#Enable()
     autocmd VimLeave * call s:OnVimLeave()
     autocmd CompleteDone * call s:OnCompleteDone()
     autocmd BufEnter,WinEnter * call s:UpdateMatches()
-    " autocmd BufReadCmd jdt://contents/**/*.class call s:ReadClassFileFromJDT()
+    autocmd BufReadCmd jdt://contents/**/*.class call s:ReadClassFileFromJDT()
   augroup END
 
   " The FileType event is not triggered for the first loaded file. We wait until
@@ -821,7 +821,8 @@ endfunction
 
 
 function s:ReadClassFileFromJDT()
-  echoerr "ReadClassFileFromJDT"
+  set filetype=java
+  YcmCompleter ClassFileContents
 endfunction
 
 
